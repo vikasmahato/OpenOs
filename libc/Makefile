@@ -79,7 +79,7 @@ libk.a: $(LIBK_OBJS)
 	$(CC) -c $< -o $@ $(LIBK_CFLAGS) $(LIBK_CPPFLAGS)
 
 clean:
-	rm -f $(BINARIES) $(OBJS) $(LIBK_OBJS) *.o */*.o */*/*.o
+	rm -f $(BINARIES) $(OBJS) $(LIBK_OBJS) *.o */*.o */*/*.o *.d */*.d */*/*.d
 
 install: install-headers install-libs
 

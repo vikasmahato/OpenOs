@@ -29,6 +29,7 @@ LIBS:=$(LIBS) $(KERNEL_ARCH_LIBS)
 OBJS:=\
 $(KERNEL_ARCH_OBJS) \
 kernel/kernel.o \
+kernel/basesystem.o \
 
 CRTI_OBJ:=$(ARCHDIR)/crti.o
 CRTBEGIN_OBJ:=$(shell $(CC) $(CFLAGS) $(LDFLAGS) -print-file-name=crtbegin.o)
@@ -64,7 +65,7 @@ openos.kernel: $(OBJ_LINK_LIST) $(ARCHDIR)/linker.ld
 	$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
 
 clean:
-	rm -f openos.kernel $(OBJS) $(ALL_OUR_OBJS) *.o */*.o */*/*.o
+	rm -f openos.kernel $(OBJS) $(ALL_OUR_OBJS) *.o */*.o */*/*.o *.d */*.d */*/*.d
 
 install: install-headers install-kernel
 

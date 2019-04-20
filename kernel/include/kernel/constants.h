@@ -1,0 +1,4 @@
+#ifndef _KERNEL_CONSTANTS_H_
+#define _KERNEL_CONSTANTS_H_
+
+#endif //_KERNEL_CONSTANTS_H_
