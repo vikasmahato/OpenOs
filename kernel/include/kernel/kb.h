@@ -6,7 +6,23 @@ extern "C"
 {
 #endif
 
-void keyboard_install();
+
+class Keyboard {
+    private:
+    struct KeyboardState {
+        int caps_lock;
+        int shift_held;
+    };
+
+    static KeyboardState state;
+    public:
+        Keyboard();
+
+    protected:
+        static void keyboard_handler(struct regs *r);
+
+
+};
 
 #ifdef __cplusplus
 }

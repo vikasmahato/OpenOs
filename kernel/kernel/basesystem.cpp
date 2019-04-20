@@ -49,6 +49,6 @@ bool BaseSystem::init_timer() {
 }
 
 bool BaseSystem::init_keyboard() {
-    keyboard_install();
+    Keyboard keyboard;
     return true;
 }
