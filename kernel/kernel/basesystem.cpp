@@ -44,7 +44,7 @@ bool BaseSystem::init_irq() {
 }
 
 bool BaseSystem::init_timer() {
-    timer_install();
+    Timer timer;
     return true;
 }
 

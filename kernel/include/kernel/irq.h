@@ -1,12 +1,12 @@
 #ifndef _KERNEL_IRQ_H_
 #define _KERNEL_IRQ_H_
 
+#include "register.h"
+
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-
-struct regs;
 
 // Sets up the IRQs, should be called on early initialization
 void irq_install();
