@@ -23,10 +23,18 @@ stack_top:
 .global _start
 .type _start, @function
 _start:
-  movl $stack_top, %esp
+  # Push multiboot info
+   movl $stack_top, %esp
+   push %ebx
+   push %eax
+
+   # Enter protection mode
+   mov %cr0, %eax
+   or $1, %al
+   mov %eax, %cr0
 
   # Initialize the core kernel before running the global constructors.
-  call kernel_early
+  #call kernel_early
 
   # Call the global constructors.
   call _init

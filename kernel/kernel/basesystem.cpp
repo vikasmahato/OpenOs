@@ -24,7 +24,7 @@ void BaseSystem::init() {
 void BaseSystem::print_early_boot_info() {}
 
 bool BaseSystem::init_gdt() {
-    GlobalDescriptorTable globalDescriptorTable;
+    gdt_install();
     return true;
 }
 
