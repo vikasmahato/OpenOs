@@ -2,6 +2,7 @@
 #define _KERNEL_VGA_H
 
 #include <stdint.h>
+#include <asm.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -42,6 +43,17 @@ static inline uint16_t make_vgaentry(char c, uint8_t color)
 
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
+
+static inline void update_cursor(size_t row, size_t col) {
+    unsigned short position = (row * VGA_WIDTH) + col;
+
+    // cursor LOW port to vga INDEX register
+    outb(0x3D4, 0x0F);
+    outb(0x3D5, (unsigned char) (position & 0xFF));
+    // cursor HIGH port to vga INDEX register
+    outb(0x3D4, 0x0E);
+    outb(0x3D5, (unsigned char) ((position >> 8) & 0xFF));
+}
 
 static uint16_t* const VGA_MEMORY = (uint16_t*) 0xB8000;
 

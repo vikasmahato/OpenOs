@@ -4,6 +4,7 @@
 #include <kernel/irq.h>
 #include <kernel/isrs.h>
 #include <kernel/kb.h>
+#include <kernel/tty.h>
 
 Keyboard::KeyboardState Keyboard::state;
 
@@ -106,30 +107,37 @@ static constexpr unsigned char kbdus[128][4] = {
 
 // Handles the keyboard interrupt
 void Keyboard::keyboard_handler(__attribute__((unused)) struct regs *r) {
-  unsigned char scancode;
-  int column = 0;
-  char clicked = 0;
-  // Read from the keyboard's data buffer
-  scancode = inb(0x60);
-  // If the top bit of the scancode is set, a key has just been released
-  if (scancode & 0x80) {
-    if (scancode >> 2 == 42 || scancode >> 2 == 54) {
-      state.shift_held = 0;
+    unsigned char scancode;
+    int column = 0;
+    char clicked = 0;
+    // Read from the keyboard's data buffer
+    scancode = inb(0x60);
+    // If the top bit of the scancode is set, a key has just been released
+    if (scancode & 0x80) {
+        if (scancode >> 2 == 42 || scancode >> 2 == 54) {
+            state.shift_held = 0;
+        }
+    } else {
+        switch (scancode) {
+            case 14: // backspace
+                terminal_backspace();
+                break;
+            case 42: // shifts
+            case 54:
+                state.shift_held = 1;
+                break;
+            case 58: // caps lock
+                state.caps_lock = !state.caps_lock;
+                break;
+            default:
+                column = state.shift_held * 1 + state.caps_lock * 2;
+                clicked = kbdus[scancode][column];
+                if (clicked != 0 && clicked != 27) {
+                    putchar(clicked);
+                }
+                break;
+        }
     }
-  } else {
-    if (scancode == 42 || scancode == 54) {
-        state.shift_held = 1;
-    }
-    if (scancode == 58) {
-        state.caps_lock = !state.caps_lock;
-    }
-
-    column = state.shift_held * 1 + state.caps_lock * 2;
-    clicked = kbdus[scancode][column];
-    if (clicked != 0 && clicked != 27) {
-      putchar(clicked);
-    }
-  }
 }
 
 Keyboard::Keyboard() {
