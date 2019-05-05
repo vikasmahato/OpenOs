@@ -1,6 +1,8 @@
 #ifndef _KERNEL_CONSTANTS_H_
 #define _KERNEL_CONSTANTS_H_
 
+#include <stdint.h>
+
 #define TICKS_PER_SECOND 100
 
 // Constants defined in the linker

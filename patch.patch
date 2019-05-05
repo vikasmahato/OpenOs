@@ -1,0 +1,1180 @@
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index dd1533c..2ac13d4 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -10,12 +10,18 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="00b78d84-d605-41cb-af97-c9dc7cfc6cd2" name="Default Changelist" comment="">
+-      <change afterPath="$PROJECT_DIR$/kernel/include/kernel/multiboot.h" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/kernel/include/kernel/memorymanager.h" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/kernel/include/kernel/paging.h" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/kernel/include/kernel/virtual_mem_manager.h" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/kernel/kernel/memorymanager.cpp" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/kernel/kernel/virtual_mem_manager.cpp" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/kernel/arch/i386/boot.S" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/arch/i386/boot.S" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/kernel/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/Makefile" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/kernel/arch/i386/linker.ld" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/arch/i386/linker.ld" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/kernel/include/kernel/basesystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/include/kernel/basesystem.h" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/kernel/kernel/basesystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/kernel/basesystem.cpp" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/kernel/kernel/kernel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/kernel/kernel/kernel.cpp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/libc/stdio/printf.c" beforeDir="false" afterPath="$PROJECT_DIR$/libc/stdio/printf.c" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/qemu.sh" beforeDir="false" afterPath="$PROJECT_DIR$/qemu.sh" afterDir="false" />
+     </list>
+     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+     <option name="SHOW_DIALOG" value="false" />
+@@ -27,96 +33,78 @@
+     <option name="formatViaClangd" value="false" />
+   </component>
+   <component name="FileEditorManager">
+-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
++    <leaf>
+       <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/kernel/arch/i386/kb.cpp">
++        <entry file="file://$PROJECT_DIR$/qemu.sh">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="105">
+-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/kernel/include/kernel/tty.h">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="135">
+-              <caret line="10" column="24" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="24" />
++            <state relative-caret-position="60">
++              <caret line="4" column="74" selection-start-line="4" selection-start-column="74" selection-end-line="4" selection-end-column="74" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+       <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/kernel/include/kernel/vga.h">
++        <entry file="file://$PROJECT_DIR$/kernel/Makefile">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="75">
+-              <caret line="5" selection-start-line="5" selection-end-line="5" />
++            <state relative-caret-position="180">
++              <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+       <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/kernel/include/kernel/gdt.h">
++        <entry file="file://$PROJECT_DIR$/kernel/include/kernel/memorymanager.h">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="135">
+-              <caret line="9" column="16" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="16" />
++            <state relative-caret-position="-390">
++              <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+               <folding>
+-                <element signature="e#66#78#0" expanded="true" />
++                <element signature="e#959#960#0" expanded="true" />
+               </folding>
+             </state>
+           </provider>
+         </entry>
+       </file>
+       <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/kernel/kernel/basesystem.cpp">
++        <entry file="file://$PROJECT_DIR$/kernel/include/kernel/paging.h">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="170">
+-              <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/kernel/arch/i386/boot.S">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="-49">
+-              <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
++            <state relative-caret-position="-780">
++              <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+       <file pinned="false" current-in-tab="true">
+-        <entry file="file://$PROJECT_DIR$/kernel/kernel/kernel.cpp">
++        <entry file="file://$PROJECT_DIR$/kernel/include/kernel/virtual_mem_manager.h">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="121">
+-              <caret line="29" selection-start-line="29" selection-end-line="29" />
++            <state relative-caret-position="930">
++              <caret line="63" column="10" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="10" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+       <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/kernel/include/kernel/multiboot.h">
++        <entry file="file://$PROJECT_DIR$/kernel/kernel/memorymanager.cpp">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="3825">
+-              <caret line="273" column="31" selection-start-line="273" selection-start-column="31" selection-end-line="273" selection-end-column="31" />
++            <state relative-caret-position="-2369">
++              <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+       <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/libc/stdio/printf.c">
++        <entry file="file://$PROJECT_DIR$/kernel/kernel/virtual_mem_manager.cpp">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="-2175">
+-              <caret line="5" selection-start-line="5" selection-end-line="5" />
++            <state relative-caret-position="30">
++              <caret line="2" column="28" lean-forward="true" selection-start-line="2" selection-end-line="3" />
+             </state>
+           </provider>
+         </entry>
+       </file>
+       <file pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/kernel/include/kernel/kb.h">
++        <entry file="file://$PROJECT_DIR$/kernel/kernel/basesystem.cpp">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="330">
+-              <caret line="23" selection-start-line="23" selection-end-line="23" />
++            <state relative-caret-position="105">
++              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+             </state>
+           </provider>
+         </entry>
+@@ -127,6 +115,8 @@
+     <findStrings>
+       <find>kbdus</find>
+       <find>state</find>
++      <find>physical_addr</find>
++      <find>alloc_block</find>
+     </findStrings>
+   </component>
+   <component name="Git.Settings">
+@@ -135,12 +125,10 @@
+   <component name="IdeDocumentHistory">
+     <option name="CHANGED_PATHS">
+       <list>
+-        <option value="$PROJECT_DIR$/kernel/include/kernel/basesystem.h" />
+         <option value="$PROJECT_DIR$/kernel/.gitignore" />
+         <option value="$PROJECT_DIR$/libc/.gitignore" />
+         <option value="$PROJECT_DIR$/.gitignore" />
+         <option value="$PROJECT_DIR$/libc/Makefile" />
+-        <option value="$PROJECT_DIR$/kernel/Makefile" />
+         <option value="$PROJECT_DIR$/kernel/include/kernel/kb.h" />
+         <option value="$PROJECT_DIR$/kernel/arch/i386/kb.cpp" />
+         <option value="$PROJECT_DIR$/kernel/include/kernel/register.h" />
+@@ -149,11 +137,20 @@
+         <option value="$PROJECT_DIR$/kernel/include/kernel/constants.h" />
+         <option value="$PROJECT_DIR$/kernel/arch/i386/timer.cpp" />
+         <option value="$PROJECT_DIR$/kernel/include/kernel/timer.h" />
+-        <option value="$PROJECT_DIR$/kernel/kernel/basesystem.cpp" />
+         <option value="$PROJECT_DIR$/kernel/include/kernel/multiboot.h" />
+         <option value="$PROJECT_DIR$/libc/stdio/printf.c" />
+         <option value="$PROJECT_DIR$/kernel/arch/i386/boot.S" />
++        <option value="$PROJECT_DIR$/qemu.sh" />
++        <option value="$PROJECT_DIR$/kernel/arch/i386/linker.ld" />
++        <option value="$PROJECT_DIR$/kernel/include/kernel/basesystem.h" />
++        <option value="$PROJECT_DIR$/kernel/kernel/basesystem.cpp" />
+         <option value="$PROJECT_DIR$/kernel/kernel/kernel.cpp" />
++        <option value="$PROJECT_DIR$/kernel/Makefile" />
++        <option value="$PROJECT_DIR$/kernel/include/kernel/memorymanager.h" />
++        <option value="$PROJECT_DIR$/kernel/include/kernel/paging.h" />
++        <option value="$PROJECT_DIR$/kernel/include/kernel/virtual_mem_manager.h" />
++        <option value="$PROJECT_DIR$/kernel/kernel/memorymanager.cpp" />
++        <option value="$PROJECT_DIR$/kernel/kernel/virtual_mem_manager.cpp" />
+       </list>
+     </option>
+   </component>
+@@ -188,61 +185,26 @@
+               <item name="OpenOs" type="b2602c69:ProjectViewProjectNode" />
+               <item name="OpenOs" type="462c0819:PsiDirectoryNode" />
+               <item name="kernel" type="462c0819:PsiDirectoryNode" />
+-              <item name="include" type="462c0819:PsiDirectoryNode" />
++              <item name="arch" type="462c0819:PsiDirectoryNode" />
+             </path>
+             <path>
+               <item name="OpenOs" type="b2602c69:ProjectViewProjectNode" />
+               <item name="OpenOs" type="462c0819:PsiDirectoryNode" />
+               <item name="kernel" type="462c0819:PsiDirectoryNode" />
+               <item name="include" type="462c0819:PsiDirectoryNode" />
+-              <item name="kernel" type="462c0819:PsiDirectoryNode" />
+             </path>
+             <path>
+               <item name="OpenOs" type="b2602c69:ProjectViewProjectNode" />
+               <item name="OpenOs" type="462c0819:PsiDirectoryNode" />
+               <item name="kernel" type="462c0819:PsiDirectoryNode" />
+-              <item name="kernel" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="OpenOs" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="OpenOs" type="462c0819:PsiDirectoryNode" />
+-              <item name="libc" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="OpenOs" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="OpenOs" type="462c0819:PsiDirectoryNode" />
+-              <item name="libc" type="462c0819:PsiDirectoryNode" />
+-              <item name="arch" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="OpenOs" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="OpenOs" type="462c0819:PsiDirectoryNode" />
+-              <item name="libc" type="462c0819:PsiDirectoryNode" />
+-              <item name="arch" type="462c0819:PsiDirectoryNode" />
+-              <item name="i386" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="OpenOs" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="OpenOs" type="462c0819:PsiDirectoryNode" />
+-              <item name="libc" type="462c0819:PsiDirectoryNode" />
+               <item name="include" type="462c0819:PsiDirectoryNode" />
++              <item name="kernel" type="462c0819:PsiDirectoryNode" />
+             </path>
+             <path>
+               <item name="OpenOs" type="b2602c69:ProjectViewProjectNode" />
+               <item name="OpenOs" type="462c0819:PsiDirectoryNode" />
+-              <item name="libc" type="462c0819:PsiDirectoryNode" />
+-              <item name="stdio" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="OpenOs" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="OpenOs" type="462c0819:PsiDirectoryNode" />
+-              <item name="sysroot" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="OpenOs" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="OpenOs" type="462c0819:PsiDirectoryNode" />
+-              <item name="sysroot" type="462c0819:PsiDirectoryNode" />
+-              <item name="usr" type="462c0819:PsiDirectoryNode" />
++              <item name="kernel" type="462c0819:PsiDirectoryNode" />
++              <item name="kernel" type="462c0819:PsiDirectoryNode" />
+             </path>
+           </expand>
+           <select />
+@@ -281,16 +243,19 @@
+       <updated>1555747036519</updated>
+       <workItem from="1555747038161" duration="2698000" />
+       <workItem from="1555780570799" duration="3121000" />
++      <workItem from="1556158992912" duration="103000" />
++      <workItem from="1556380878644" duration="3672000" />
+     </task>
+     <servers />
+   </component>
+   <component name="TimeTrackingManager">
+-    <option name="totallyTimeSpent" value="6339000" />
++    <option name="totallyTimeSpent" value="10389000" />
+   </component>
+   <component name="ToolWindowManager">
+     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
++    <editor active="true" />
+     <layout>
+-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25757575" />
++      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2659091" />
+       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+       <window_info id="Favorites" order="2" side_tool="true" />
+       <window_info anchor="bottom" id="Message" order="0" />
+@@ -302,7 +267,7 @@
+       <window_info anchor="bottom" id="TODO" order="6" />
+       <window_info anchor="bottom" id="Database Changes" order="7" />
+       <window_info anchor="bottom" id="Version Control" order="8" />
+-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32736155" />
++      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32736155" />
+       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+@@ -321,13 +286,6 @@
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/kernel/Makefile">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="1005">
+-          <caret line="67" column="83" selection-start-line="67" selection-start-column="83" selection-end-line="67" selection-end-column="83" />
+-        </state>
+-      </provider>
+-    </entry>
+     <entry file="file://$PROJECT_DIR$/libc/Makefile">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="332">
+@@ -391,13 +349,6 @@
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/vga.h">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="75">
+-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+-        </state>
+-      </provider>
+-    </entry>
+     <entry file="file://$PROJECT_DIR$/kernel/include/kernel/register.h">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="120">
+@@ -408,16 +359,6 @@
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/gdt.h">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="135">
+-          <caret line="9" column="16" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="16" />
+-          <folding>
+-            <element signature="e#66#78#0" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+     <entry file="file://$PROJECT_DIR$/kernel/include/kernel/idt.h">
+       <provider selected="true" editor-type-id="text-editor" />
+     </entry>
+@@ -442,54 +383,57 @@
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/kernel/arch/i386/kb.cpp">
++    <entry file="file://$PROJECT_DIR$/kernel/arch/i386/timer.cpp">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="105">
+-          <caret line="7" selection-start-line="7" selection-end-line="7" />
++        <state relative-caret-position="60">
++          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/basesystem.h">
++    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/timer.h">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="106">
+-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
++        <state relative-caret-position="300">
++          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
++          <folding>
++            <element signature="e#70#82#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/kernel/arch/i386/timer.cpp">
++    <entry file="file://$PROJECT_DIR$/libc/include/asm.h">
++      <provider selected="true" editor-type-id="text-editor" />
++    </entry>
++    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/gdt.h">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="60">
+-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
++        <state relative-caret-position="135">
++          <caret line="9" column="16" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="16" />
++          <folding>
++            <element signature="e#66#78#0" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/kb.h">
++    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/vga.h">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="330">
+-          <caret line="23" selection-start-line="23" selection-end-line="23" />
++        <state relative-caret-position="75">
++          <caret line="5" selection-start-line="5" selection-end-line="5" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/timer.h">
++    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/tty.h">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="300">
+-          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+-          <folding>
+-            <element signature="e#70#82#0" expanded="true" />
+-          </folding>
++        <state relative-caret-position="135">
++          <caret line="10" column="24" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="24" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/kernel/kernel/basesystem.cpp">
++    <entry file="file://$PROJECT_DIR$/kernel/arch/i386/kb.cpp">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="170">
+-          <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
++        <state relative-caret-position="105">
++          <caret line="7" selection-start-line="7" selection-end-line="7" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/libc/include/asm.h">
+-      <provider selected="true" editor-type-id="text-editor" />
+-    </entry>
+     <entry file="file://$PROJECT_DIR$/kernel/include/kernel/multiboot.h">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="3825">
+@@ -504,24 +448,97 @@
+         </state>
+       </provider>
+     </entry>
++    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/kb.h">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="330">
++          <caret line="23" selection-start-line="23" selection-end-line="23" />
++        </state>
++      </provider>
++    </entry>
+     <entry file="file://$PROJECT_DIR$/kernel/arch/i386/boot.S">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-49">
+-          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
++        <state relative-caret-position="302">
++          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/tty.h">
++    <entry file="file://$PROJECT_DIR$/kernel/arch/i386/linker.ld">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="135">
+-          <caret line="10" column="24" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="24" />
++        <state relative-caret-position="332">
++          <caret line="34" column="49" selection-start-line="34" selection-start-column="49" selection-end-line="34" selection-end-column="49" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/qemu.sh">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="60">
++          <caret line="4" column="74" selection-start-line="4" selection-start-column="74" selection-end-line="4" selection-end-column="74" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/kernel/kernel/basesystem.cpp">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="105">
++          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/kernel/Makefile">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="180">
++          <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/kernel/kernel/virtual_mem_manager.cpp">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="30">
++          <caret line="2" column="28" lean-forward="true" selection-start-line="2" selection-end-line="3" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/memorymanager.h">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="-390">
++          <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
++          <folding>
++            <element signature="e#959#960#0" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/kernel/kernel/memorymanager.cpp">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="-2369">
++          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/kernel/kernel/kernel.cpp">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="121">
+-          <caret line="29" selection-start-line="29" selection-end-line="29" />
++        <state relative-caret-position="-345">
++          <caret line="7" column="23" lean-forward="true" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/basesystem.h">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="285">
++          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/paging.h">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="-780">
++          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/kernel/include/kernel/virtual_mem_manager.h">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="930">
++          <caret line="63" column="10" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="10" />
+         </state>
+       </provider>
+     </entry>
+diff --git a/kernel/Makefile b/kernel/Makefile
+index cfedad9..3e1cd08 100644
+--- a/kernel/Makefile
++++ b/kernel/Makefile
+@@ -30,6 +30,8 @@ OBJS:=\
+ $(KERNEL_ARCH_OBJS) \
+ kernel/kernel.o \
+ kernel/basesystem.o \
++kernel/memorymanager.o \
++kernel/virtual_mem_manager.o \
+ 
+ CRTI_OBJ:=$(ARCHDIR)/crti.o
+ CRTBEGIN_OBJ:=$(shell $(CC) $(CFLAGS) $(LDFLAGS) -print-file-name=crtbegin.o)
+diff --git a/kernel/arch/i386/linker.ld b/kernel/arch/i386/linker.ld
+index 7627da9..e8b9b93 100644
+--- a/kernel/arch/i386/linker.ld
++++ b/kernel/arch/i386/linker.ld
+@@ -9,6 +9,7 @@ SECTIONS
+   /* Begin putting sections at 1 MiB, a conventional place for kernels to be
+      loaded at by the bootloader. */
+   . = 1M;
++  kernel_start = .;
+ 
+   /* First put the multiboot header, as it is required to be put very early
+      early in the image or the bootloader won't recognize the file format.
+@@ -41,4 +42,5 @@ SECTIONS
+ 
+   /* The compiler may produce other sections, put them in the proper place in
+      in this file, if you'd like to include them in the final kernel. */
++  kernel_end = . ;
+ }
+diff --git a/kernel/include/kernel/basesystem.h b/kernel/include/kernel/basesystem.h
+index a9745cf..76dbd12 100644
+--- a/kernel/include/kernel/basesystem.h
++++ b/kernel/include/kernel/basesystem.h
+@@ -18,7 +18,7 @@ class BaseSystem {
+         bool init_keyboard();
+         bool init_irq();
+     public:
+-        void init();
++        void init(struct multiboot_info* mb);
+ };
+ 
+ #ifdef __cplusplus
+diff --git a/kernel/include/kernel/memorymanager.h b/kernel/include/kernel/memorymanager.h
+index 3fd45e7..ccb124f 100644
+--- a/kernel/include/kernel/memorymanager.h
++++ b/kernel/include/kernel/memorymanager.h
+@@ -1,8 +1,49 @@
+-//
+-// Created by dcoder on 27/4/19.
+-//
++#ifndef _KERNEL_MEMORYMANAGER_H_
++#define _KERNEL_MEMORYMANAGER_H_
+ 
+-#ifndef OPENOS_MEMORYMANAGER_H
+-#define OPENOS_MEMORYMANAGER_H
++#include "constants.h"
++#include <stdint.h>
+ 
+-#endif //OPENOS_MEMORYMANAGER_H
++#ifdef __cplusplus
++extern "C"
++{
++#endif
++
++
++#define KERNEL_START_ADDR ((uint32_t) &kernel_start)
++#define KERNEL_END_ADDR ((uint32_t) &kernel_end)
++#define KERNEL_SIZE (KERNEL_START_ADDR - KERNEL_END_ADDR)
++
++#define PHYS_BLOCKS_PER_BYTE 8
++#define PHYS_BLOCK_SIZE 4096
++
++typedef uint32_t physical_addr;
++
++// Constants defined in the linker
++extern uint32_t kernel_start;
++extern uint32_t kernel_end;
++
++// Physical memory manager
++// Currently implemented using bit map based allocation
++static uint32_t* phys_memory_map_ = 0;
++static uint32_t phys_mem_size_kb_ = 0;
++static uint32_t used_blocks_ = 0;
++static uint32_t total_blocks_ = 0;
++
++void phys_memory_init(struct multiboot_info* mb);
++
++void* alloc_block();
++void* alloc_blocks(uint32_t count);
++
++void free_block(void* p);
++void free_blocks(void* p, uint32_t count);
++
++bool is_alloced(void* p);
++
++
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif  // _KERNEL_GDT_H_
+\ No newline at end of file
+diff --git a/kernel/include/kernel/paging.h b/kernel/include/kernel/paging.h
+index b94358a..ca77b92 100644
+--- a/kernel/include/kernel/paging.h
++++ b/kernel/include/kernel/paging.h
+@@ -1,8 +1,115 @@
+-//
+-// Created by dcoder on 27/4/19.
+-//
++#ifndef _KERNEL_PAGING_H_
++#define _KERNEL_MEMORYMANAGER_H_
+ 
+-#ifndef OPENOS_PAGING_H
+-#define OPENOS_PAGING_H
++#ifdef __cplusplus
++extern "C"
++{
++#endif
+ 
+-#endif //OPENOS_PAGING_H
++#include "constants.h"
++#include <stdint.h>
++#include <stdbool.h>
++#include <stdio.h>
++#include "memorymanager.h"
++
++// A Page Table Entry points to a single page stored somewhere in memory/disk
++
++typedef uint32_t pt_entry;
++
++enum PAGE_PTE_FLAGS {
++    I86_PTE_PRESENT = 1,
++    I86_PTE_WRITABLE = 2,
++    I86_PTE_USER = 4,
++    I86_PTE_WRITETHOUGH = 8,
++    I86_PTE_NOT_CACHEABLE = 0x10,
++    I86_PTE_ACCESSED = 0x20,
++    I86_PTE_DIRTY = 0x40,
++    I86_PTE_PAT = 0x80,
++    I86_PTE_CPU_GLOBAL = 0x100,
++    I86_PTE_LV4_GLOBAL = 0x200,
++    I86_PTE_FRAME = 0x7FFFF000
++};
++
++inline void pt_entry_add_attrib(pt_entry* entry, uint32_t attrib) {
++    *entry |= attrib;
++}
++
++inline void pt_entry_del_attrib(pt_entry* entry, uint32_t attrib) {
++    *entry &= ~attrib;
++}
++
++inline void pt_entry_set_frame(pt_entry* entry, physical_addr addr) {
++    *entry = (*entry & ~I86_PTE_FRAME) | addr;
++}
++
++inline bool pt_entry_is_present(pt_entry entry) {
++    return entry & I86_PTE_PRESENT;
++}
++
++inline bool pt_entry_is_writable(pt_entry entry) {
++    return entry & I86_PTE_WRITABLE;
++}
++
++inline physical_addr pt_entry_frame(pt_entry entry) {
++    return entry & I86_PTE_FRAME;
++}
++
++// A Page Directory Entry points to a diretory with 1024 PT Entries
++
++typedef uint32_t pd_entry;
++
++enum PAGE_PDE_FLAGS {
++    I86_PDE_PRESENT = 1,
++    I86_PDE_WRITABLE = 2,
++    I86_PDE_USER = 4,
++    I86_PDE_PWT = 8,
++    I86_PDE_PCD = 0x10,
++    I86_PDE_ACCESSED = 0x20,
++    I86_PDE_DIRTY = 0x40,
++    I86_PDE_4MB = 0x80,
++    I86_PDE_CPU_GLOBAL = 0x100,
++    I86_PDE_LV4_GLOBAL = 0x200,
++    I86_PDE_FRAME = 0x7FFFF000
++};
++
++inline void pd_entry_add_attrib(pd_entry* entry, uint32_t attrib) {
++    *entry |= attrib;
++}
++
++inline void pd_entry_del_attrib(pd_entry* entry, uint32_t attrib) {
++    *entry &= attrib;
++}
++
++inline void pd_entry_set_frame(pd_entry* entry, physical_addr addr) {
++    *entry = (*entry & ~I86_PDE_FRAME) | addr;
++}
++
++inline bool pd_entry_is_present(pd_entry entry) {
++    return entry & I86_PDE_PRESENT;
++}
++
++inline bool pd_entry_is_user(pd_entry entry) {
++    return entry & I86_PDE_USER;
++}
++
++inline bool pd_entry_is_4mb(pd_entry entry) {
++    return entry & I86_PDE_4MB;
++}
++
++inline bool pd_entry_is_writable(pd_entry entry) {
++    return entry & I86_PDE_WRITABLE;
++}
++
++inline physical_addr pd_entry_frame(pd_entry entry) {
++    return entry & I86_PDE_FRAME;
++}
++
++inline void pd_entry_enable_global(pd_entry entry) {
++    // TODO(psamora) Figure this out
++}
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif  // _KERNEL_GDT_H_
+\ No newline at end of file
+diff --git a/kernel/include/kernel/virtual_mem_manager.h b/kernel/include/kernel/virtual_mem_manager.h
+index 6da891e..874e564 100644
+--- a/kernel/include/kernel/virtual_mem_manager.h
++++ b/kernel/include/kernel/virtual_mem_manager.h
+@@ -5,4 +5,67 @@
+ #ifndef OPENOS_VIRTUAL_MEM_MANAGER_H
+ #define OPENOS_VIRTUAL_MEM_MANAGER_H
+ 
++
++#ifdef __cplusplus
++extern "C"
++{
++#endif
++
++#include <asm.h>
++#include <stdbool.h>
++#include <stdint.h>
++#include "paging.h"
++
++#define PAGES_PER_TABLE 1024
++#define PAGES_PER_DIR 1024
++#define PAGE_SIZE 4096
++#define PTABLE_ADDR_SPACE_SIZE 0x400000    // 4MB
++#define DTABLE_ADDR_SPACE_SIZE 0x100000000 // 4GB
++
++#define PAGE_DIRECTORY_INDEX(x) (((x) >> 22) & 0x3FF)
++#define PAGE_TABLE_INDEX(x) (((x) >> 12) & 0x3FF)
++#define PAGE_GET_PHYSICAL_ADDRESS(x) (*x & ~0xFFF)
++
++typedef uint32_t virtual_addr;
++
++// Page Directory holds 1024 page directory entries
++typedef struct page_directory {
++    pd_entry m_entries[PAGES_PER_DIR];
++} page_directory;
++
++// Page Table holds 1024 page table entries
++typedef struct page_table {
++    pt_entry m_entries[PAGES_PER_TABLE];
++} page_table;
++
++page_directory* cur_directory;
++
++inline pt_entry* ptable_lookup_entry(page_table* table, virtual_addr addr) {
++    if (table)
++        return &table->m_entries[PAGE_TABLE_INDEX(addr)];
++    return 0;
++}
++
++inline pd_entry* pdirectory_lookup_entry(page_directory* directory,
++                                         virtual_addr addr) {
++    if (directory)
++        return &directory->m_entries[PAGE_DIRECTORY_INDEX(addr)];
++    return 0;
++}
++
++bool alloc_page(pt_entry* e);
++void free_page(pt_entry* e);
++void map_page(void* physical_addr, void* virtual_addr);
++void paging_install();
++
++extern void enable_paging(uint32_t page_dir);
++
++inline void flush_tlb_entry(virtual_addr addr) {
++    invlpg((void *) addr);
++}
++
++#ifdef __cplusplus
++}
++#endif
++
+ #endif //OPENOS_VIRTUAL_MEM_MANAGER_H
+diff --git a/kernel/kernel/basesystem.cpp b/kernel/kernel/basesystem.cpp
+index 678fdb4..571fd0a 100644
+--- a/kernel/kernel/basesystem.cpp
++++ b/kernel/kernel/basesystem.cpp
+@@ -8,14 +8,17 @@
+ #include <kernel/timer.h>
+ #include <kernel/tty.h>
+ #include <kernel/kb.h>
++#include <kernel/memorymanager.h>
+ 
+-
+-void BaseSystem::init() {
++void BaseSystem::init(struct multiboot_info* mb) {
+     terminal_initialize();
+     init_gdt();
+     init_idt();
+     init_isr();
+     init_irq();
++
++    phys_memory_init(mb);
++
+     init_timer();
+     init_keyboard();
+     enable_interrupts();
+diff --git a/kernel/kernel/kernel.cpp b/kernel/kernel/kernel.cpp
+index 91635e7..8e1cc21 100644
+--- a/kernel/kernel/kernel.cpp
++++ b/kernel/kernel/kernel.cpp
+@@ -21,7 +21,7 @@ void kernel_early() {
+ void kernel_main(uint32_t magic, struct multiboot_info* mb) {
+ 
+     BaseSystem baseSystem;
+-    baseSystem.init();
++    baseSystem.init(mb);
+ 
+     printf("Magic number: %lx\n", magic);
+     multiboot_memory_map_t* mm = (multiboot_memory_map_t*) mb->mmap_addr;
+diff --git a/kernel/kernel/memorymanager.cpp b/kernel/kernel/memorymanager.cpp
+index ee36d28..512cff7 100644
+--- a/kernel/kernel/memorymanager.cpp
++++ b/kernel/kernel/memorymanager.cpp
+@@ -1,4 +1,180 @@
+-//
+-// Created by dcoder on 27/4/19.
+-//
++#include <stdbool.h>
++#include <stdio.h>
++#include <string.h>
+ 
++#include <kernel/multiboot.h>
++#include <kernel/memorymanager.h>
++
++// Functions to manipulate the bitmap
++
++inline static void map_set(int bit) {
++    phys_memory_map_[bit / 32] |= (1 << (bit % 32));
++}
++
++inline static void map_unset(int bit) {
++    phys_memory_map_[bit / 32] &= ~(1 << (bit % 32));
++}
++
++inline static bool map_test(int bit) {
++    return phys_memory_map_[bit / 32] & (1 << (bit % 32));
++}
++
++int find_free_block() {
++    for (uint32_t i = 0; i < total_blocks_; i++) {
++        uint32_t block = phys_memory_map_[i];
++        if (block != 0xFFFFFFFF) {
++            for (uint8_t j = 0; j < 32; j++) {
++                int bit = 1 << j;
++                if (!(bit & block)) {
++                    return (32 * i) + j;
++                }
++            }
++        }
++    }
++    return -1;
++}
++
++int find_free_blocks(uint32_t count) {
++    int starting_block = -1;
++    int starting_block_bit = -1;
++    uint32_t cur_block_num = 0;
++    for (uint32_t i = 0; i < total_blocks_; i++) {
++        uint32_t cur_block = phys_memory_map_[i];
++        if (cur_block == 0xFFFFFFFF) {
++            cur_block_num = 0;
++            continue;
++        }
++
++        for (uint8_t j = 0; j < 32; j++) {
++            int bit = 1 << j;
++            if (bit & cur_block) {  // bit is set
++                cur_block_num = 0;
++                continue;
++            }
++
++            if (!cur_block_num) starting_block = i;
++            if (!cur_block_num) starting_block_bit = j;
++            cur_block_num += 1;
++            if (cur_block_num == count) {
++                return (32 * starting_block) + starting_block_bit;
++            }
++        }
++    }
++    return -1;
++}
++
++// Functions to manage a single block in memory
++void* alloc_block() {
++    if (total_blocks_ - used_blocks_ <= 0) {
++        return 0;
++    }
++
++    int free_block = find_free_block();
++    if (free_block == -1) {
++        return 0;
++    }
++
++    map_set(free_block);
++    uint32_t addr = free_block * PHYS_BLOCK_SIZE;
++    used_blocks_++;
++    return (void*) addr;
++}
++
++void free_block(void* p) {
++    uint32_t addr = (uint32_t) p;
++    int block = addr / PHYS_BLOCK_SIZE;
++
++    map_unset(block);
++    used_blocks_--;
++}
++
++bool is_alloced(void* p) {
++    uint32_t addr = (uint32_t) p;
++    int block = addr / PHYS_BLOCK_SIZE;
++    return map_test(block);
++}
++
++// Functions to allocate multiple blocks of memory
++
++void* alloc_blocks(uint32_t count) {
++    if (total_blocks_ - used_blocks_ <= 0) {
++        return 0;
++    }
++
++    int free_block = find_free_blocks(count);
++    if (free_block == -1) {
++        return 0;
++    }
++
++    for (uint32_t i = 0; i < count; i++) {
++        map_set(free_block + i);
++    }
++
++    uint32_t addr = free_block * PHYS_BLOCK_SIZE;
++    used_blocks_ += count;
++    return (void*) addr;
++}
++
++void free_blocks(void* p, uint32_t count) {
++    uint32_t addr = (uint32_t) p;
++    int block = addr / PHYS_BLOCK_SIZE;
++
++    for (uint32_t i = 0; i < count; i++)
++        map_unset(block + i);
++
++    used_blocks_ -= count;
++}
++
++// Internal functions to allocate ranges of memory
++
++void allocate_chunk(int base_addr, int length) {
++    int cur_block_addr = base_addr / PHYS_BLOCK_SIZE;
++    int num_blocks = length / PHYS_BLOCK_SIZE;
++    while (num_blocks-- >= 0) {
++        map_set(cur_block_addr++);
++        used_blocks_--;
++    }
++}
++
++void free_chunk(int base_addr, int length) {
++    int cur_block_addr = base_addr / PHYS_BLOCK_SIZE;
++    int num_blocks = length / PHYS_BLOCK_SIZE;
++
++    while (num_blocks--) {
++        map_unset(cur_block_addr++);
++        used_blocks_--;
++    }
++}
++
++// Functions to initialize the Physical Memory Manager
++
++void free_available_memory(struct multiboot_info* mb) {
++    multiboot_memory_map_t* mm = (multiboot_memory_map_t*) mb->mmap_addr;
++    while ((unsigned int) mm < mb->mmap_addr + mb->mmap_length) {
++        if (mm->type == MULTIBOOT_MEMORY_AVAILABLE) {
++            free_chunk(mm->addr, mm->len);
++        }
++        mm = (multiboot_memory_map_t*) ((unsigned int) mm +
++                                        mm->size + sizeof(mm->size));
++    }
++    map_set(0);
++}
++
++void phys_memory_init(struct multiboot_info* mb) {
++    phys_mem_size_kb_ = mb->mem_upper + mb->mem_lower;
++    total_blocks_ = (phys_mem_size_kb_ * 1024) / PHYS_BLOCK_SIZE;
++    used_blocks_ = total_blocks_;
++    phys_memory_map_ = (uint32_t*) KERNEL_END_ADDR;
++    memset(phys_memory_map_, 0xFF, total_blocks_ / PHYS_BLOCKS_PER_BYTE);
++
++    // Frees memory GRUB considers available
++    free_available_memory(mb);
++
++    // From the freed memory, we need to allocate the ones used by the Kernel
++    allocate_chunk(KERNEL_START_ADDR, KERNEL_SIZE);
++
++    // We also need to allocate the memory used by the Physical Map itself
++    allocate_chunk(*phys_memory_map_, total_blocks_);
++    printf("PhysMem Manager installed. %lxKB, %lx blocks, %lx free blocks.\n",
++           phys_mem_size_kb_, total_blocks_, total_blocks_ - used_blocks_);
++}
+\ No newline at end of file
+diff --git a/kernel/kernel/virtual_mem_manager.cpp b/kernel/kernel/virtual_mem_manager.cpp
+index ee36d28..556c9c1 100644
+--- a/kernel/kernel/virtual_mem_manager.cpp
++++ b/kernel/kernel/virtual_mem_manager.cpp
+@@ -1,4 +1,109 @@
+-//
+-// Created by dcoder on 27/4/19.
+-//
++#include <string.h>
++#include <kernel/virtual_mem_manager.h>
++#include <kernel/memorymanager.h>
+ 
++bool alloc_page(pt_entry* entry) {
++    void* addr = alloc_block();
++    if (!addr) {
++        return false;
++    }
++
++    pt_entry_set_frame(entry, (physical_addr) addr);
++    pt_entry_add_attrib(entry, I86_PTE_PRESENT);
++    return true;
++}
++
++void free_page(pt_entry* entry) {
++    void* block = (void*) pt_entry_frame(*entry);
++    if (block) {
++        free_block(block);
++    }
++
++    pt_entry_del_attrib(entry, I86_PTE_PRESENT);
++}
++
++void map_page(void* physical_addr, void* virtual_addr) {
++    pd_entry* entry = pdirectory_lookup_entry(cur_directory, virtual_addr);
++    if (!pd_entry_is_present(*entry)) {
++        // Page Directory Entry not present, allocate it
++        page_table* table = (page_table*) alloc_block();
++        if (!table)
++            return;
++
++        // Clear the newly allocated page
++        memset(table, 0, sizeof(page_table));
++
++        // Maps the Page Directory Entry to the new table
++        pd_entry_add_attrib(entry, I86_PDE_PRESENT);
++        pd_entry_add_attrib(entry, I86_PDE_WRITABLE);
++        pd_entry_set_frame(entry, table);
++    }
++
++    // Get table address from entry, guaranteed to be set now
++    page_table* table = (page_table*) PAGE_GET_PHYSICAL_ADDRESS(entry);
++
++    // Get page table entry
++    pt_entry* page = ptable_lookup_entry(table, virtual_addr);
++
++    // Maps the Page Table Entry to the given physical address
++    pt_entry_set_frame(page, physical_addr);
++    pt_entry_add_attrib(page, I86_PTE_PRESENT);
++}
++
++void paging_install() {
++    // Allocates default page table
++    page_table* table = (page_table*) alloc_block();
++    if (!table)
++        return;
++
++    // Allocates 3GB page table
++    page_table* table2 = (page_table*) alloc_block();
++    if (!table2)
++        return;
++
++    // Clear allocated page tables
++    memset(table, 0, sizeof(page_table));
++    memset(table2, 0, sizeof(page_table));
++
++    // Maps the page table to the first 4MB of physical memory
++    for (int i = 0, frame = 0x0, virt = 0x00000000; i < 1024;
++         i++, frame += 4096, virt += 4096) {
++
++        pt_entry page = 0;
++        pt_entry_add_attrib(&page, I86_PTE_PRESENT);
++        pt_entry_set_frame(&page, frame);
++
++        table2->m_entries[PAGE_TABLE_INDEX(virt)] = page;
++    }
++
++    // Maps 1MB physical memory to 3GB (kernel)
++    for (int i = 0, frame = 0x100000, virt = 0xC0000000; i < 1024;
++         i++, frame += 4096, virt += 4096) {
++
++        pt_entry page = 0;
++        pt_entry_add_attrib(&page, I86_PTE_PRESENT);
++        pt_entry_set_frame(&page, frame);
++
++        table->m_entries[PAGE_TABLE_INDEX(virt)] = page;
++    }
++
++    // Create default directory table
++    cur_directory = (page_directory*) alloc_blocks(3);
++    if (!cur_directory)
++        return;
++
++    memset(cur_directory, 0, sizeof (page_directory));
++
++    pd_entry* entry = pdirectory_lookup_entry(cur_directory, 0xC0000000);
++    pd_entry_add_attrib(entry, I86_PDE_PRESENT);
++    pd_entry_add_attrib(entry, I86_PDE_WRITABLE);
++    pd_entry_set_frame(entry, (physical_addr) table);
++
++    pd_entry* entry2 = pdirectory_lookup_entry(cur_directory, 0x00000000);
++    pd_entry_add_attrib(entry2, I86_PDE_PRESENT);
++    pd_entry_add_attrib(entry2, I86_PDE_WRITABLE);
++    pd_entry_set_frame(entry2, (physical_addr) table2);
++
++    enable_paging((uint32_t) cur_directory);
++    printf("Paging installed.\n");
++}
+\ No newline at end of file
+diff --git a/qemu.sh b/qemu.sh
+index 616e3a0..229207a 100755
+--- a/qemu.sh
++++ b/qemu.sh
+@@ -2,4 +2,4 @@
+ set -e
+ . ./iso.sh
+ 
+-qemu-system-$(./target-triplet-to-arch.sh $HOST) -cdrom openos.iso
++qemu-system-$(./target-triplet-to-arch.sh $HOST) -cdrom openos.iso -m 1024
