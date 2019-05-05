@@ -3,6 +3,9 @@
 
 #include "constants.h"
 #include "multiboot.h"
+#include <stdio.h>
+#include <stdint.h>
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -19,16 +22,16 @@ class PhysicalMemoryManager {
         // Currently implemented using bit map based allocation
 
         //! memory map bit array. Each bit represents a memory block
-        static uint32_t* phys_memory_map_ = 0;
+        static uint32_t* phys_memory_map_;
 
         //! size of physical memory
-        static uint32_t phys_mem_size_kb_ = 0;
+        static uint32_t phys_mem_size_kb_;
 
         //! number of blocks currently in use
-        static uint32_t used_blocks_ = 0;
+        static uint32_t used_blocks_;
 
         //! maximum number of available memory blocks
-        static uint32_t total_blocks_ = 0;
+        static uint32_t total_blocks_;
 
         void mmap_set (int bit);
         void mmap_unset (int bit);

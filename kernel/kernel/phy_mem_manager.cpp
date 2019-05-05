@@ -1,4 +1,10 @@
 #include <kernel/phy_mem_manager.h>
+#include <string.h>
+
+uint32_t* PhysicalMemoryManager::phys_memory_map_ = 0;
+uint32_t PhysicalMemoryManager::phys_mem_size_kb_ = 0;
+uint32_t PhysicalMemoryManager::used_blocks_ = 0;
+uint32_t PhysicalMemoryManager::total_blocks_ = 0;
 
 PhysicalMemoryManager::PhysicalMemoryManager(multiboot_info* mb) {
     phys_mem_size_kb_ = mb->mem_upper + mb->mem_lower;
@@ -86,16 +92,16 @@ int PhysicalMemoryManager::find_free_block () {
 
 void PhysicalMemoryManager::allocate_chunk (uint32_t base_addr, size_t size) {
     int cur_block_addr = base_addr / BLOCK_SIZE;
-    int num_blocks = length / BLOCK_SIZE;
+    int num_blocks = size / BLOCK_SIZE;
     while (num_blocks-- >= 0) {
         mmap_set(cur_block_addr++);
         used_blocks_--;
     }
 }
 
-void PhysicalMemoryManager::deallocate_chunk (uint32_t base_addr, size_t size) {
+void PhysicalMemoryManager::deallocate_chunk(uint32_t base_addr, size_t size) {
     int cur_block_addr = base_addr / BLOCK_SIZE;
-    int num_blocks = length / BLOCK_SIZE;
+    int num_blocks = size / BLOCK_SIZE;
 
     while (num_blocks--) {
         mmap_set(cur_block_addr++);
