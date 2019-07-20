@@ -2,3 +2,5 @@
 isodir
 sysroot
 *.d
+.vscode
+.vscode/*

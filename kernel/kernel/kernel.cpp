@@ -18,13 +18,12 @@ void kernel_early() {
 
 }
 
-void kernel_main(uint32_t magic, struct multiboot_info* mb) {
+void kernel_main(struct multiboot_info* mb) {
 
     BaseSystem baseSystem;
     baseSystem.init(mb);
 
-    printf("Magic number: %lx\n", magic);
-    
+    printf("Multiboot address: %lx\n", mb);
 
   printf("Hello, kernel World!\n");
 
