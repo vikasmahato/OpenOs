@@ -5,6 +5,7 @@ uint32_t* PhysicalMemoryManager::phys_memory_map_ = 0;
 uint32_t PhysicalMemoryManager::phys_mem_size_kb_ = 0;
 uint32_t PhysicalMemoryManager::used_blocks_ = 0;
 uint32_t PhysicalMemoryManager::total_blocks_ = 0;
+bool PhysicalMemoryManager::pmm_paging_active_ = false;
 
 PhysicalMemoryManager::PhysicalMemoryManager(multiboot_info* mb) {
     phys_mem_size_kb_ = mb->mem_upper + mb->mem_lower;
@@ -17,10 +18,10 @@ PhysicalMemoryManager::PhysicalMemoryManager(multiboot_info* mb) {
     free_available_memory(mb);
 
     // From the freed memory, we need to allocate the ones used by the Kernel
-    allocate_chunk(KERNEL_START_ADDR, KERNEL_SIZE);
+    pmm_alloc_blocks(KERNEL_START_ADDR, KERNEL_SIZE);
 
     // We also need to allocate the memory used by the Physical Map itself
-    allocate_chunk(*phys_memory_map_, total_blocks_);
+    pmm_alloc_blocks(*phys_memory_map_, total_blocks_);
     printf("PhysMem Manager installed. %lxKB, %lx blocks, %lx free blocks.\n",
            phys_mem_size_kb_, total_blocks_, total_blocks_ - used_blocks_);
 }
@@ -30,7 +31,7 @@ void PhysicalMemoryManager::free_available_memory(multiboot_info* mb) {
     multiboot_memory_map_t* mm = (multiboot_memory_map_t*) mb->mmap_addr;
     while ((unsigned int) mm < mb->mmap_addr + mb->mmap_length) {
         if (mm->type == MULTIBOOT_MEMORY_AVAILABLE) {
-            allocate_chunk(mm->addr, mm->len);
+            pmm_alloc_blocks(mm->addr, mm->len);
         }
         mm = (multiboot_memory_map_t*) ((unsigned int) mm +
                                         mm->size + sizeof(mm->size));
@@ -38,7 +39,7 @@ void PhysicalMemoryManager::free_available_memory(multiboot_info* mb) {
     mmap_set(0);
 }
 
-void* PhysicalMemoryManager::alloc_block() {
+void* PhysicalMemoryManager::pmm_alloc_block() {
     if (used_blocks_ <= 0) {
         return 0;
     }
@@ -55,7 +56,7 @@ void* PhysicalMemoryManager::alloc_block() {
     return (void*) addr;
 }
 
-void PhysicalMemoryManager::free_block(void* p) {
+void PhysicalMemoryManager::pmm_free_block(void* p) {
     uint32_t addr = (uint32_t) p;
     int block = addr / BLOCK_SIZE;
 
@@ -90,7 +91,7 @@ int PhysicalMemoryManager::find_free_block () {
     return -1;
 }
 
-void PhysicalMemoryManager::allocate_chunk (uint32_t base_addr, size_t size) {
+void PhysicalMemoryManager::pmm_alloc_blocks (uint32_t base_addr, size_t size) {
     int cur_block_addr = base_addr / BLOCK_SIZE;
     int num_blocks = size / BLOCK_SIZE;
     while (num_blocks-- >= 0) {
@@ -99,7 +100,7 @@ void PhysicalMemoryManager::allocate_chunk (uint32_t base_addr, size_t size) {
     }
 }
 
-void PhysicalMemoryManager::deallocate_chunk(uint32_t base_addr, size_t size) {
+void PhysicalMemoryManager::pmm_free_blocks(uint32_t base_addr, size_t size) {
     int cur_block_addr = base_addr / BLOCK_SIZE;
     int num_blocks = size / BLOCK_SIZE;
 
@@ -107,4 +108,12 @@ void PhysicalMemoryManager::deallocate_chunk(uint32_t base_addr, size_t size) {
         mmap_set(cur_block_addr++);
         used_blocks_--;
     }
+}
+
+void PhysicalMemoryManager::pmm_notify_paging_enabled() {
+    pmm_paging_active_ = true;
+}
+
+void PhysicalMemoryManager::pmm_notify_paging_disabled() {
+    pmm_paging_active_ = false;
 }

@@ -146,10 +146,30 @@ stack_top:
 .align 0x1000
 .global _boot_page_directory
 _boot_page_directory:
+    # The first entry of the page directory identity-maps 0-4MB. We use 4MB pages to do this,
+    # and since the range is 0-$MB, then the index of the Page Directory is 0, which is why
+    # the first entry is this one.
+    # All bits are clear except the following:
+    # bit 7: PS The kernel page is 4MB. (big pages)
+    # bit 1: RW The kernel page is read/write.
+    # bit 0: P  The kernel page is present.
+    # This gives us 0x00000083 (remember each page  directory entry is 4 bytes)
+    # This entry must be here -- otherwise the kernel will crash immediately after paging is
+    # enabled because it can't fetch the next instruction! It's ok to unmap this page later.
     .long 0x00000083
-    .fill (KERNEL_PAGE_NUMBER - 1), 4, 0x00000000
-    .long 0x00000083
-    .fill (1024 - KERNEL_PAGE_NUMBER - 1), 4, 0x00000000
+    # Add null pages until we reach the PMM page number
+    .fill (PMM_PAGE_NUMBER - 1), 4, 0x00000000  # Pages before PMM space.
+    .long 0xB0000083 # This page directory entry identity-maps the 4MB starting at 0xB0000000
+    
+    # Null pages until we reach the page where our kernel will live, and
+    # which we'll have to map. FIXME: If the kernel ever gets really big (bigger than 4MB),
+    # It might be left unmapped!!
+    .fill (KERNEL_PAGE_NUMBER - PMM_PAGE_NUMBER - 1), 4, 0x00000000  # Pages before kernel space.
+    .long 0x00000083 # This page directory entry defines a 4MB page containing the kernel.
+    
+     # Add the remaining pages until we've filled the Page Directory
+    # (Remember a page directory is an array of 1024 page tables)
+    .fill (1024 - KERNEL_PAGE_NUMBER - 1), 4, 0x00000000 # Pages after the kernel image.
 
 .section .text
 .global _loader

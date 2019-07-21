@@ -33,6 +33,9 @@ class PhysicalMemoryManager {
         //! maximum number of available memory blocks
         static uint32_t total_blocks_;
 
+        //! Paging Enabled means that the VMM has full control of paging,
+        static bool pmm_paging_active_;
+
         void mmap_set (int bit);
         void mmap_unset (int bit);
         bool mmap_test (int bit);
@@ -42,12 +45,24 @@ class PhysicalMemoryManager {
         void free_available_memory(multiboot_info* mb);
 
         //! Functions to manage a single block in memory
-        void*	alloc_block ();
-        void	free_block (void* p);
+        void*	pmm_alloc_block ();
+        void	pmm_free_block (void* p);
 
         //! Functions to manage a large blocks in memory
-        void allocate_chunk (uint32_t base_addr, size_t size);
-        void deallocate_chunk (uint32_t base_addr, size_t size);
+        void pmm_alloc_blocks (uint32_t base_addr, size_t size);
+        void pmm_free_blocks (uint32_t base_addr, size_t size);
+
+        /* Used by the VMM to notify the PMM of paging changes
+        * Do note that our kernel already boots with paging enabled
+        * (see start.s). What we mean by "paging enabled" here is if the kernel
+        * has entered its second paging stage, where the VMM is enabled and a new
+        * page directory is effectively created (using the PMM itself).
+        *
+        * In summary: Paging Enabled means that the VMM has full control of paging,
+        *             not simply that paging is enabled, because it always is!
+        */
+        static void pmm_notify_paging_enabled ();
+        static void pmm_notify_paging_disabled ();
 
     public:
         PhysicalMemoryManager(multiboot_info* mb);
