@@ -21,6 +21,14 @@ ARCHDIR:=arch/$(HOSTARCH)
 
 include $(ARCHDIR)/make.config
 
+LIBKDIR:=libk/
+
+include $(LIBKDIR)/make.config
+
+DEVICESDIR:=devices/
+
+include $(DEVICESDIR)/make.config
+
 CFLAGS:=$(CFLAGS) $(KERNEL_ARCH_CFLAGS)
 CPPFLAGS:=$(CPPFLAGS) $(KERNEL_ARCH_CPPFLAGS)
 LDFLAGS:=$(LDFLAGS) $(KERNEL_ARCH_LDFLAGS)
@@ -28,11 +36,9 @@ LIBS:=$(LIBS) $(KERNEL_ARCH_LIBS)
 
 OBJS:=\
 $(KERNEL_ARCH_OBJS) \
-kernel/kernel.o \
-kernel/basesystem.o \
-kernel/phy_mem_manager.o \
-kernel/pagetable.o \
-kernel/virtual_mem_manager.o \
+$(LIBK_OBJS) \
+$(DEVICES_OBJS) \
+kernel.o \
 
 CRTI_OBJ:=$(ARCHDIR)/crti.o
 CRTBEGIN_OBJ:=$(shell $(CC) $(CFLAGS) $(LDFLAGS) -print-file-name=crtbegin.o)
@@ -63,18 +69,18 @@ openos.kernel: $(OBJ_LINK_LIST) $(ARCHDIR)/linker.ld
 
 %.o: %.cpp
 	$(CC) -MD -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
-
+	
 %.o: %.S
 	$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
 
 clean:
-	rm -f openos.kernel $(OBJS) $(ALL_OUR_OBJS) *.o */*.o */*/*.o *.d */*.d */*/*.d
+	rm -f openos.kernel $(OBJS) $(ALL_OUR_OBJS) *.o */*.o */*/*.o
 
 install: install-headers install-kernel
 
 install-headers:
 	mkdir -p $(DESTDIR)$(INCLUDEDIR)
-	cp -RTv include $(DESTDIR)$(INCLUDEDIR)
+	cp -RTv ../include $(DESTDIR)$(INCLUDEDIR)
 
 install-kernel: openos.kernel
 	mkdir -p $(DESTDIR)$(BOOTDIR)
