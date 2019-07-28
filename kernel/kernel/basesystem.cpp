@@ -9,15 +9,17 @@
 #include <kernel/tty.h>
 #include <kernel/kb.h>
 #include <kernel/phy_mem_manager.h>
-
+#include <kernel/virtual_mem_manager.h>
 
 void BaseSystem::init(multiboot_info* mb) {
     terminal_initialize();
+    print_early_boot_info(mb);
     init_gdt();
     init_idt();
     init_isr();
     init_irq();
-    PhysicalMemoryManager physicalMemoryManager(mb);
+    PhysicalMemoryManager physicalMemoryManager(mb, 0xB0000000);
+    VirtualMemoryManager virtulMemoryManager(&physicalMemoryManager);
     init_timer();
     init_keyboard();
     enable_interrupts();

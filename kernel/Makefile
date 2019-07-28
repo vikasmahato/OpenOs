@@ -31,6 +31,8 @@ $(KERNEL_ARCH_OBJS) \
 kernel/kernel.o \
 kernel/basesystem.o \
 kernel/phy_mem_manager.o \
+kernel/pagetable.o \
+kernel/virtual_mem_manager.o \
 
 CRTI_OBJ:=$(ARCHDIR)/crti.o
 CRTBEGIN_OBJ:=$(shell $(CC) $(CFLAGS) $(LDFLAGS) -print-file-name=crtbegin.o)
