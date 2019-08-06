@@ -95,7 +95,7 @@ VirtualMemoryManager::VirtualMemoryManager(PhysicalMemoryManager* pmm) {
   }
 
   // Maps kernel pages and phys mem pages
-  // TODO(psamora) What if kernel is > 4MB?
+  // TODO What if kernel is > 4MB?
   for (uint32_t frame = KERNEL_START_PADDR, virt = KERNEL_START_VADDR;
        frame < physicalMemoryManager->kernel_phys_map_end; frame += 4096, virt += 4096) {
     pt_entry page = 0;

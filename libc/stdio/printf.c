@@ -5,7 +5,6 @@
 
 typedef enum { SHORT_SHORT, SHORT, DEFAULT, LONG, LONG_LONG } length_specifier;
 
-// TODO(psamora) These don't have to be this bad, refactor
 #define print_num(__base, __casted_num)                         \
   {                                                             \
     if (__casted_num == 0) {                                    \

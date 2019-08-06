@@ -11,17 +11,21 @@
 
 // Defines an IDT entry
 struct idt_entry {
-  uint16_t handler_lo;
-  uint16_t sel;
-  uint8_t always0;
-  uint8_t flags;
-  uint16_t handler_hi;
+  uint16_t handler_lo;      /* The lower 16 bits of the address to jump to. */
+  uint16_t sel;             /* Kernel segment selector. See below. */
+  uint8_t always0;          /* This must always be zero. */
+  uint8_t flags;            /* More flags, also called TYPE attribute. See below. */
+  uint16_t handler_hi;      /* The upper 16 bits of the address to jump to. */
 } __attribute__((packed));
 typedef struct idt_entry idt_entry_t;
 
+/*
+ * A struct describing a pointer to an array of interrupt handlers.
+ * This is in a format suitable for giving to 'lidt'
+ */
 struct idt_ptr {
   uint16_t limit;
-  uint32_t base;
+  uint32_t base;          /* The address of the first element in our idt_entry_t array. */
 } __attribute__((packed));
 typedef struct idt_ptr idt_ptr_t;
 
@@ -129,7 +133,7 @@ void idt_install() {
   SET_IDT_ENTRY(46);
   SET_IDT_ENTRY(47);
 
-  // Remap PICs. Maybe move this somewhere else in the future.
+  // Remap PICs.
   outb(0x20, 0x10);
   outb(0xA0, 0x10);
   outb(0x21, 0x20);

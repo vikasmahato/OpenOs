@@ -9,18 +9,23 @@
 
 typedef uint32_t pt_entry;
 
+
+/* Define bitmasks to check the Present, Write, User, Write-Through, Not-Cacheable,
+ * accessed, dirty bits, as well as the reserved, available (for use) and frame
+ * parts of the Page Table Entry (PTE).
+ */
 enum PAGE_PTE_FLAGS {
-  I86_PTE_PRESENT = 1,
-  I86_PTE_WRITABLE = 2,
-  I86_PTE_USER = 4,
-  I86_PTE_WRITETHOUGH = 8,
-  I86_PTE_NOT_CACHEABLE = 0x10,
-  I86_PTE_ACCESSED = 0x20,
-  I86_PTE_DIRTY = 0x40,
-  I86_PTE_PAT = 0x80,
-  I86_PTE_CPU_GLOBAL = 0x100,
-  I86_PTE_LV4_GLOBAL = 0x200,
-  I86_PTE_FRAME = 0x7FFFF000
+  I86_PTE_PRESENT        = 1,             /* 00000000000000000000000000000001 */
+  I86_PTE_WRITABLE       = 2,             /* 00000000000000000000000000000010 */
+  I86_PTE_USER           = 4,             /* 00000000000000000000000000000100 */
+  I86_PTE_WRITETHOUGH    = 8,             /* 00000000000000000000000000001000 */
+  I86_PTE_NOT_CACHEABLE  = 0x10,          /* 00000000000000000000000000010000 */
+  I86_PTE_ACCESSED       = 0x20,          /* 00000000000000000000000000100000 */
+  I86_PTE_DIRTY          = 0x40,          /* 00000000000000000000000001000000 */
+  I86_PTE_PAT            = 0x80,          /* 00000000000000000000000010000000 */
+  I86_PTE_CPU_GLOBAL     = 0x100,         /* 00000000000000000000000100000000 */
+  I86_PTE_LV4_GLOBAL     = 0x200,         /* 00000000000000000000001000000000 */
+  I86_PTE_FRAME          = 0x7FFFF000     /* 01111111111111111111000000000000 */
 };
 
 inline void pt_entry_add_attrib(pt_entry* entry, uint32_t attrib) {
@@ -51,18 +56,22 @@ inline physical_addr pt_entry_frame(pt_entry entry) {
 
 typedef uint32_t pd_entry;
 
+/* Define bitmasks to check the Present, Write, User, Write-Through, Not-Cacheable,
+ * accessed, dirty bits, as well as the reserved, available (for use) and frame
+ * parts of the Page Table Entry (PTE).
+ */
 enum PAGE_PDE_FLAGS {
-  I86_PDE_PRESENT = 1,
-  I86_PDE_WRITABLE = 2,
-  I86_PDE_USER = 4,
-  I86_PDE_PWT = 8,
-  I86_PDE_PCD = 0x10,
-  I86_PDE_ACCESSED = 0x20,
-  I86_PDE_DIRTY = 0x40,
-  I86_PDE_4MB = 0x80,
-  I86_PDE_CPU_GLOBAL = 0x100,
-  I86_PDE_LV4_GLOBAL = 0x200,
-  I86_PDE_FRAME = 0x7FFFF000
+  I86_PDE_PRESENT            = 1,           /* 00000000000000000000000000000001 */
+  I86_PDE_WRITABLE           = 2,           /* 00000000000000000000000000000010 */
+  I86_PDE_USER               = 4,           /* 00000000000000000000000000000100 */
+  I86_PDE_PWT                = 8,           /* 00000000000000000000000000001000 */
+  I86_PDE_PCD                = 0x10,        /* 00000000000000000000000000010000 */
+  I86_PDE_ACCESSED           = 0x20,        /* 00000000000000000000000000100000 */
+  I86_PDE_DIRTY              = 0x40,        /* 00000000000000000000000001000000 */
+  I86_PDE_4MB                = 0x80,        /* 00000000000000000000000010000000 */
+  I86_PDE_CPU_GLOBAL         = 0x100,       /* 00000000000000000000000100000000 */
+  I86_PDE_LV4_GLOBAL         = 0x200,       /* 00000000000000000000001000000000 */
+  I86_PDE_FRAME              = 0x7FFFF000   /* 01111111111111111111000000000000 */
 };
 
 inline void pd_entry_add_attrib(pd_entry* entry, uint32_t attrib) {
@@ -94,7 +103,7 @@ inline physical_addr pd_entry_frame(pd_entry entry) {
 }
 
 inline void pd_entry_enable_global(pd_entry entry) {
-  // TODO(psamora) Figure this out
+  
 }
 
 #endif  // _LIBK_KPAGING_H_
