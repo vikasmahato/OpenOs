@@ -9,11 +9,12 @@
 #include <stdint.h>
 
 /*
- * This explanation was taken from the web. Mostly from jorl17's tutorial.
+ * This explanation was taken from the web. Mostly from jorl17's, brokenthorn's
+ *  and jamesmolly's tutorial.
  *  
  * Our VMM is a somehwat complex piece of programming responsible for managing
- * paging and virtual memory. This documentation will attempt to explain x96
- * paging, but will most likely fail to do so. However, if used together with
+ * paging and virtual memory. This documentation will attempt to explain x86
+ * paging. However, if used together with
  * the recommended reading, it might be helpful for those looking to understand
  * the innerworkings of paging for the x86.
  * 
@@ -166,7 +167,6 @@
  * -> The "Available" bits are free for us to use for what we want
  * -> The "Reserved" bits are reserved and we can't use them
  * -> The "Dirty" bit is set by the Proessor/Hardware when a page is writen to
- *    (the MMU can do this for us) FIXME: Is it the MMU?
  * -> The "Access" bit is the same as the dirty bit, but for all access operations
  * -> The "User/Kernel Flag" is used to decide if the page can be accessed by user
  *    mode or not. If it is set to 1, then it's a user mode page and it can only
