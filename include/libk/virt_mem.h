@@ -307,7 +307,7 @@ extern "C"
 {
 #endif
 
-extern enable_paging(uint32_t page_dir);
+extern void enable_paging(uint32_t page_dir);
 
 // Page Directory holds 1024 page directory entries
 typedef struct page_directory {

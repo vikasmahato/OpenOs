@@ -13,16 +13,16 @@
  * reset (bochs will panic with an 'unhandled exception' error).
  * The special, CPU-dedicated interrupts are shown below.
 
- * 0 - Division by zero exception
- * 1 - Debug exception
- * 2 - Non maskable interrupt
- * 3 - Breakpoint exception
- * 4 - 'Into detected overflow'
- * 5 - Out of bounds exception
- * 6 - Invalid opcode exception
- * 7 - No coprocessor exception
- * 8 - Double fault (pushes an error code)
- * 9 - Coprocessor segment overrun
+ * 0  - Division by zero exception
+ * 1  - Debug exception
+ * 2  - Non maskable interrupt
+ * 3  - Breakpoint exception
+ * 4  - 'Into detected overflow'
+ * 5  - Out of bounds exception
+ * 6  - Invalid opcode exception
+ * 7  - No coprocessor exception
+ * 8  - Double fault (pushes an error code)
+ * 9  - Coprocessor segment overrun
  * 10 - Bad TSS (pushes an error code)
  * 11 - Segment not present (pushes an error code)
  * 12 - Stack fault (pushes an error code)

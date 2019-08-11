@@ -23,6 +23,10 @@ void Timer::timer_phase(int hz) {
     outb(0x40, divisor >> 8);     // Set high byte of divisor
 }
 
-void Timer::timer_handler(struct regs *r) {
+void Timer::timer_handler(__attribute__((unused)) regs *r) {
     timer_ticks++;
 }
+
+void Timer::initialize() {}
+void Timer::reset() {}
+void Timer::destroy() {}

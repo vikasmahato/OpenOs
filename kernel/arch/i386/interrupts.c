@@ -22,7 +22,7 @@ bool register_interrupt_handler(
   return true;
 }
 
-void fault_handler(struct regs *r) {
+void fault_handler(__attribute__((unused)) struct regs *r) {
   printf("System Exception. System Halted!\n");
   for (;;);
 }

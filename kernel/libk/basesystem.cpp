@@ -21,8 +21,8 @@ void BaseSystem::init(multiboot_info* mb) {
     init_irq();
     PhysicalMemoryManager physicalMemoryManager(mb);
     VirtualMemoryManager virtualMemoryManager(&physicalMemoryManager);
-    init_timer();
-    init_keyboard();
+    DriverManager driverManager;
+    initializeDrivers(&driverManager);
     enable_interrupts();
 }
 
@@ -61,12 +61,12 @@ bool BaseSystem::init_irq() {
     return true;
 }
 
-bool BaseSystem::init_timer() {
+bool BaseSystem::initializeDrivers(DriverManager* driverManager) {
     Timer timer;
-    return true;
-}
-
-bool BaseSystem::init_keyboard() {
     Keyboard keyboard;
+
+    driverManager->addDriver(&timer);
+    driverManager->addDriver(&keyboard);
+    driverManager->initializeAll();
     return true;
 }

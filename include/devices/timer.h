@@ -6,8 +6,10 @@ extern "C"
 {
 #endif
 
+#include <devices/driver.h>
+
 // Sets up the system clock
-class Timer {
+class Timer : public Driver{
     private:
         // Holds how many ticks that the system has been running for
         static int timer_ticks;
@@ -15,6 +17,9 @@ class Timer {
         void timer_phase(int hz);
     public:
         Timer();
+        void initialize();
+        void reset();
+        void destroy();
 
     protected:
         // IRQ Handler for the timer. Called at every clock tick

@@ -2,6 +2,7 @@
 #define _KERNEL_BASESYSTEM_H_
 
 #include <external/multiboot.h>
+#include <devices/driver.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -14,8 +15,7 @@ class BaseSystem {
         bool init_gdt();
         bool init_idt();
         bool init_isr();
-        bool init_timer();
-        bool init_keyboard();
+        bool initializeDrivers(DriverManager* driverManager);
         bool init_irq();
     public:
         void init(multiboot_info* mb);

@@ -6,8 +6,9 @@ extern "C"
 {
 #endif
 
+#include <devices/driver.h>
 
-class Keyboard {
+class Keyboard : public Driver{
     private:
     struct KeyboardState {
         int caps_lock;
@@ -17,9 +18,12 @@ class Keyboard {
     static KeyboardState state;
     public:
         Keyboard();
+        void initialize();
+        void reset();
+        void destroy();
 
     protected:
-        static void keyboard_handler(struct regs *r);
+        static void keyboardHandler(struct regs *r);
 
 
 };

@@ -107,7 +107,7 @@ static constexpr unsigned char kbdus[128][4] = {
 };
 
 // Handles the keyboard interrupt
-void Keyboard::keyboard_handler(__attribute__((unused)) struct regs *r) {
+void Keyboard::keyboardHandler(__attribute__((unused)) regs *r) {
     unsigned char scancode;
     int column = 0;
     char clicked = 0;
@@ -142,8 +142,12 @@ void Keyboard::keyboard_handler(__attribute__((unused)) struct regs *r) {
 }
 
 Keyboard::Keyboard() {
-    register_interrupt_handler(KEYBOARD_IDT_INDEX, keyboard_handler);
+    register_interrupt_handler(KEYBOARD_IDT_INDEX, keyboardHandler);
     Keyboard::state.caps_lock = 0;
     Keyboard::state.shift_held = 0;
     printf("Keyboard installed.\n");
 }
+
+void Keyboard::initialize() {}
+void Keyboard::reset() {}
+void Keyboard::destroy() {}
