@@ -74,7 +74,7 @@ openos.kernel: $(OBJ_LINK_LIST) $(ARCHDIR)/linker.ld
 	$(CC) -c $< -o $@ $(CFLAGS) $(CPPFLAGS)
 
 clean:
-	rm -f openos.kernel $(OBJS) $(ALL_OUR_OBJS) *.o */*.o */*/*.o
+	rm -f openos.kernel $(OBJS) $(ALL_OUR_OBJS) *.o */*.o */*/*.o *.d */*.d */*/*.d
 
 install: install-headers install-kernel
 

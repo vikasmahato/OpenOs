@@ -25,6 +25,16 @@
 #define PAGES_PER_DIR 1024
 #define PAGE_SIZE 4096
 
+// Constants to the Kernel heap
+#define HEAP_VIRT_ADDR_START 0xC0500000  // if kernel size > 4MB, change
+#define HEAP_INITIAL_BLOCK_SIZE 12
+
+#define HEAP_BLOCK_SIZE 16          // bytes
+#define HEAP_BLOCK_BIT_MAP_SIZE 31  // 31 bytes can represent 248 blocks
+#define HEAP_BLOCK_COUNT 248  // amount of blocks we can fit beside the bitmap
+#define HEAP_BLOCKS_NEED_FOR_N_BYTES(n)   \
+	(n / HEAP_BLOCK_SIZE) + (n % HEAP_BLOCK_SIZE == 0 ? 0 : 1)
+
 // Functions to
 #define ALIGN_BLOCK(addr) (addr) - ((addr) % PHYS_BLOCK_SIZE);
 
