@@ -3,7 +3,7 @@
 
 #include <external/multiboot.h>
 #include <devices/driver.h>
-
+#include <data_structures/ordered_array.h>
 #ifdef __cplusplus
 extern "C"
 {
