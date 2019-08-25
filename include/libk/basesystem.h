@@ -25,4 +25,4 @@ class BaseSystem {
 }
 #endif
 
-#endif  // _KERNEL_GDT_H_
+#endif  // _KERNEL_BASESYSTEM_H_
