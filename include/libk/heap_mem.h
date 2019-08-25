@@ -100,6 +100,9 @@ class HeapMemoryManager {
         bool readonly;          /* Should extra pages requested by us be mapped as read-only? */
 
         int32_t findSmallestHole(size_t size, bool page_align);
+        void expand(size_t new_size);
+        size_t contract(size_t new_size);
+
     public:
         HeapMemoryManager(VirtualMemoryManager *virtualMemoryManager, uint32_t start, uint32_t end, 
                             uint32_t max, bool supervisor, bool readonly);
