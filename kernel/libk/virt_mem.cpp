@@ -10,19 +10,26 @@ bool VirtualMemoryManager::alloc_page(virtual_addr vaddr) {
     return false;
   }
   map_page(paddr, vaddr);
+  printf("Mapping virt_addr: %lx to phy_addr: %lx\n", vaddr, paddr);
   return true;
 }
 
 void VirtualMemoryManager::free_page(virtual_addr addr) {
   pd_entry* pd_entry = pdirectory_lookup_entry(cur_directory, addr);
-  if (!pd_entry) return;
+  if (!pd_entry) {
+    printf("Virtual addr %lx was not present in Page Directory\n");
+    return;
+  }
 
   page_table* table = (page_table*)PAGE_GET_PHYSICAL_ADDRESS(pd_entry);
   pt_entry* pt_entry = ptable_lookup_entry(table, addr);
-  if (!pt_entry) return;
-
+  if (!pt_entry) {
+    printf("Virtual addr %lx was not present in Page Table\n");
+    return;
+  }
   physical_addr block = pt_entry_frame(*pt_entry);
   if (block) {
+    printf("Freeing physical address %lx\n", block);
     physicalMemoryManager->free_block(block);
   }
 

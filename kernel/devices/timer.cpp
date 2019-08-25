@@ -10,8 +10,8 @@
 int Timer::timer_ticks = 0;
 
 // Sets up the system clock
-Timer::Timer() {
-    register_interrupt_handler(TIMER_IDT_INDEX, timer_handler);
+Timer::Timer(InterruptHandler* interruptHandler) {
+    interruptHandler->register_interrupt_handler(TIMER_IDT_INDEX, timer_handler);
     timer_phase(TICKS_PER_SECOND);
   printf("Timer installed.\n");
 }

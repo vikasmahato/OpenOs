@@ -16,7 +16,7 @@ class Timer : public Driver{
         // Sets the frequency of system timer
         void timer_phase(int hz);
     public:
-        Timer();
+        Timer(InterruptHandler* interruptHandler);
         void initialize();
         void reset();
         void destroy();

@@ -17,7 +17,7 @@ class Keyboard : public Driver{
 
     static KeyboardState state;
     public:
-        Keyboard();
+        Keyboard(InterruptHandler* interruptHandler);
         void initialize();
         void reset();
         void destroy();

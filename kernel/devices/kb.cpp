@@ -141,8 +141,8 @@ void Keyboard::keyboardHandler(__attribute__((unused)) regs *r) {
     }
 }
 
-Keyboard::Keyboard() {
-    register_interrupt_handler(KEYBOARD_IDT_INDEX, keyboardHandler);
+Keyboard::Keyboard(InterruptHandler* interruptHandler) {
+    interruptHandler->register_interrupt_handler(KEYBOARD_IDT_INDEX, keyboardHandler);
     Keyboard::state.caps_lock = 0;
     Keyboard::state.shift_held = 0;
     printf("Keyboard installed.\n");
