@@ -18,13 +18,14 @@ void BaseSystem::init(multiboot_info* mb) {
     print_early_boot_info(mb);
     init_gdt();
     init_idt();
+    InterruptHandler interruptHandler;
     init_isr();
     init_irq();
     PhysicalMemoryManager physicalMemoryManager(mb);
     VirtualMemoryManager virtualMemoryManager(&physicalMemoryManager);
     HeapMemoryManager heapMemoryManager(&virtualMemoryManager, HEAP_VIRT_ADDR_START, HEAP_VIRT_ADDR_START+HEAP_INITIAL_BLOCK_SIZE, 0xCFFFF000, false, false);
     DriverManager driverManager;
-    initializeDrivers(&driverManager);
+    initializeDrivers(&driverManager, &interruptHandler);
     enable_interrupts();
 }
 
@@ -63,9 +64,9 @@ bool BaseSystem::init_irq() {
     return true;
 }
 
-bool BaseSystem::initializeDrivers(DriverManager* driverManager) {
-    Timer timer;
-    Keyboard keyboard;
+bool BaseSystem::initializeDrivers(DriverManager* driverManager, InterruptHandler* interruptHandler) {
+    Timer timer(interruptHandler);;
+    Keyboard keyboard(interruptHandler);;
 
     driverManager->addDriver(&timer);
     driverManager->addDriver(&keyboard);

@@ -1,8 +1,10 @@
 #ifndef _INTERRUPT_H_
-#define _INTERRUPT_H_
+#define _INTERRUPT_H_ 1
 
 #include <stdbool.h>
 #include <string.h>
+#include <stddef.h>
+#include <arch/i386/idt.h>
 
 #define TIMER_IDT_INDEX 32
 #define KEYBOARD_IDT_INDEX 33

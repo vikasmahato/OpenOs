@@ -1,5 +1,5 @@
 #ifndef _LIBK_KHEAP_MEM_H_
-#define _LIBK_KHEAP_MEM_H_
+#define _LIBK_KHEAP_MEM_H_ 1
 
 #include <data_structures/ordered_array.h>
 #include <libk/memlayout.h>
