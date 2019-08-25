@@ -9,6 +9,7 @@
 #include <external/multiboot.h>
 #include <libk/phys_mem.h>
 #include <libk/virt_mem.h>
+#include <libk/heap_mem.h>
 
 #include <stdio.h>
 
@@ -21,10 +22,10 @@ void BaseSystem::init(multiboot_info* mb) {
     init_irq();
     PhysicalMemoryManager physicalMemoryManager(mb);
     VirtualMemoryManager virtualMemoryManager(&physicalMemoryManager);
+    HeapMemoryManager heapMemoryManager(&virtualMemoryManager, HEAP_VIRT_ADDR_START, HEAP_VIRT_ADDR_START+HEAP_INITIAL_BLOCK_SIZE, 0xCFFFF000, false, false);
     DriverManager driverManager;
     initializeDrivers(&driverManager);
     enable_interrupts();
-    OrderedArray orderedArray;
 }
 
 void BaseSystem::print_early_boot_info(multiboot_info* mb) {

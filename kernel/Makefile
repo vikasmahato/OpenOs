@@ -42,6 +42,7 @@ OBJS:=\
 $(KERNEL_ARCH_OBJS) \
 $(LIBK_OBJS) \
 $(DEVICES_OBJS) \
+$(DATA_STRUCTURES_OBJS) \
 kernel.o \
 
 CRTI_OBJ:=$(ARCHDIR)/crti.o

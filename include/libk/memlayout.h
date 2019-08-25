@@ -24,10 +24,14 @@
 #define PAGES_PER_TABLE 1024
 #define PAGES_PER_DIR 1024
 #define PAGE_SIZE 4096
+#define PAGE_SIZE_HEX 0x1000
 
 // Constants to the Kernel heap
-#define HEAP_VIRT_ADDR_START 0xC0500000  // if kernel size > 4MB, change
-#define HEAP_INITIAL_BLOCK_SIZE 0x100000
+#define HEAP_VIRT_ADDR_START  0xC0500000 // if kernel size > 4MB, change
+#define HEAP_INITIAL_BLOCK_SIZE  0x100000
+#define HEAP_INDEX_SIZE   0x20000
+#define HEAP_MAGIC        0x123890AB
+#define HEAP_MIN_SIZE     0x70000
 
 // Functions to
 #define ALIGN_BLOCK(addr) (addr) - ((addr) % PHYS_BLOCK_SIZE);

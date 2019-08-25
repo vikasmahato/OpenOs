@@ -343,6 +343,14 @@ class VirtualMemoryManager {
       if (directory) return &directory->m_entries[PAGE_DIRECTORY_INDEX(addr)];
       return 0;
     }
+
+    /*
+     * This maps a virtual page to a physical frame. Note that both virt and phys 
+     * have to be page/4kb-aligned. The function makes sure that the current PD
+     * has the necessary PDEs, creating any necessary PTs and PTEs. It's a somewwhat
+     * complex process which can be transparently done with it.
+     */
+    void map_page(physical_addr, virtual_addr);
   public:
     page_directory* cur_directory;
     VirtualMemoryManager(PhysicalMemoryManager* pmm);
@@ -360,14 +368,6 @@ class VirtualMemoryManager {
      * and marking the PTE as NOT PRESENT
      */
     void free_page(virtual_addr addr);
-
-    /*
-     * This maps a virtual page to a physical frame. Note that both virt and phys 
-     * have to be page/4kb-aligned. The function makes sure that the current PD
-     * has the necessary PDEs, creating any necessary PTs and PTEs. It's a somewwhat
-     * complex process which can be transparently done with it.
-     */
-    void map_page(physical_addr, virtual_addr);
 
     /* Converts a virtual address to a physical address */
     uint32_t virt_to_phys(virtual_addr addr);
